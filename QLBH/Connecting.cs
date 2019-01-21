@@ -40,9 +40,9 @@ namespace QLBH
             SqlCommand scm = new SqlCommand(sql, ketnoi);
             scm.ExecuteNonQuery();
         }
-        public void suanv(string hoten, string gioitinh, string ngaysinh, string diachi, string sdt, string ngayvaolam, string mucluong, string macv,string chon)
+        public void suanv(string manv,string hoten, string gioitinh, string ngaysinh, string diachi, string sdt, string ngayvaolam, string mucluong, string macv,string chon)
         {
-            string sql = "UPDATE NHANVIEN SET HOTENNV=N'" + hoten + "',GIOITINH=N'" + gioitinh + "',NGAYSINH='" + ngaysinh + "',DIACHI=N'" + diachi + "',SODT='" + sdt + "',NGAYVL=N'" + ngayvaolam + "',MUCLUONG=N'" + mucluong + "',MACV=N'" + macv + "' WHERE MANV=N'" + chon + "'";
+            string sql = "UPDATE NHANVIEN SET MANV=N'"+manv+"', HOTENNV=N'" + hoten + "',GIOITINH=N'" + gioitinh + "',NGAYSINH='" + ngaysinh + "',DIACHI=N'" + diachi + "',SODT='" + sdt + "',NGAYVL=N'" + ngayvaolam + "',MUCLUONG=N'" + mucluong + "',MACV=N'" + macv + "' WHERE MANV=N'" + chon + "'";
             SqlCommand scm = new SqlCommand(sql, ketnoi);
             scm.ExecuteNonQuery();
         }
