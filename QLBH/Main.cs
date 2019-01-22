@@ -163,5 +163,21 @@ namespace QLBH
                 new SANPHAM().Show();
             }
         }
+
+        private void hoáĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms["HOADON"] == null)
+            {
+                new HOADON().Show();
+            }
+        }
+
+        private void hoáĐơnChiTiếtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms["HOADONCHITIET"] == null)
+            {
+                new HOADONCHITIET().Show();
+            }
+        }
     }
 }

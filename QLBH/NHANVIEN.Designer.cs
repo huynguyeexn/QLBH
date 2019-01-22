@@ -279,8 +279,6 @@
             this.cb_macv.Size = new System.Drawing.Size(179, 24);
             this.cb_macv.TabIndex = 7;
             this.cb_macv.Visible = false;
-            this.cb_macv.DropDown += new System.EventHandler(this.cb_macv_DropDown);
-            this.cb_macv.SelectedIndexChanged += new System.EventHandler(this.cb_macv_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -324,7 +322,7 @@
             this.lb_thongbao.AutoSize = true;
             this.lb_thongbao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lb_thongbao.ForeColor = System.Drawing.Color.Red;
-            this.lb_thongbao.Location = new System.Drawing.Point(396, 204);
+            this.lb_thongbao.Location = new System.Drawing.Point(398, 206);
             this.lb_thongbao.Name = "lb_thongbao";
             this.lb_thongbao.Size = new System.Drawing.Size(110, 20);
             this.lb_thongbao.TabIndex = 67;

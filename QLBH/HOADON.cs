@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace QLBH
 {
-    public partial class NHANVIEN : Form
+    public partial class HOADON : Form
     {
-        public NHANVIEN()
+        public HOADON()
         {
             InitializeComponent();
         }
@@ -37,35 +37,39 @@ namespace QLBH
                 con.Open();
             }
             catch { }
-            SqlCommand cn = new SqlCommand("Select macv, tencv from chucvu", con);
+            SqlCommand cn = new SqlCommand("Select makh from khachhang", con);
             SqlDataAdapter ad = new SqlDataAdapter(cn);
             DataSet ds = new DataSet();
-            ad.Fill(ds, "chucvu");
-            cb_macv.DataSource = ds.Tables[0];
-            cb_macv.DisplayMember = "macv";
-            cb_macv.ValueMember = "macv";
-            cb_macv.SelectedIndex = -1;
+            ad.Fill(ds, "khachhang");
+            cb_makh.DataSource = ds.Tables[0];
+            cb_makh.DisplayMember = "makh";
+            cb_makh.ValueMember = "makh";
+            cb_makh.SelectedIndex = -1;
+
+            SqlCommand cn1 = new SqlCommand("Select manv from nhanvien", con);
+            SqlDataAdapter ad1 = new SqlDataAdapter(cn1);
+            DataSet ds1 = new DataSet();
+            ad1.Fill(ds1, "nhanvien");
+            cb_manv.DataSource = ds1.Tables[0];
+            cb_manv.DisplayMember = "manv";
+            cb_manv.ValueMember = "manv";
+            cb_manv.SelectedIndex = -1;
         }
 
         // load dữ liệu vào DataGridView
         public void Loaddulieu()
         {
-            string sql = "Select * from NHANVIEN";
+            string sql = "Select * from HOADON";
             dtgv.DataSource = kn.taobang(sql);
         }
 
         // xoá text các label
         void xoa_lb()
         {
-            lb_chucvu.ResetText();
-            lb_diachi.ResetText();
-            lb_gioitinh.ResetText();
-            lb_hoten.ResetText();
+            lb_makh.ResetText();
+            lb_ngaylaphd.ResetText();
+            lb_sohd.ResetText();
             lb_manv.ResetText();
-            lb_mucluong.ResetText();
-            lb_ngaysinh.ResetText();
-            lb_ngayvaolam.ResetText();
-            lb_sdt.ResetText();
         }
 
         // ẩn các button
@@ -76,7 +80,7 @@ namespace QLBH
             bt_xoa.Visible = false;
             bt_sua.Visible = false;
             bt_them.Visible = false;
-            
+
         }
 
         // ẩn các textbox
@@ -125,11 +129,9 @@ namespace QLBH
             };
             t1.Start();
         }
-        
-        #endregion
 
-        // code khi load dữ liệu
-        public void NHANVIEN_Load(object sender, EventArgs e)
+        #endregion
+        private void HOADON_Load(object sender, EventArgs e)
         {
             con = kn.ketnoi;
             con.Open();
@@ -139,7 +141,6 @@ namespace QLBH
             lb_thongbao.Text = "";      // cho thông báo bằng rỗng.
             an_btn();                   // ẩn các button.
             bt_them.Visible = true;     // hiện button thêm.
-            
         }
 
         int vitri = -1;         // lấy ra vị trí dòng được chọn trong DataGridView.
@@ -166,30 +167,21 @@ namespace QLBH
                     xoa_lb();
 
                     // hiện dữ liệu vào các textbox
-                    txt_manv.Text = row.Cells[0].Value.ToString().Trim();
-                    txt_hoten.Text = row.Cells[1].Value.ToString().Trim();
-                    cb_gioitinh.SelectedItem = row.Cells[2].Value.ToString().Trim();
-                    ngaysinh.Value = DateTime.Parse(row.Cells[3].Value.ToString().Trim());
-                    txt_diachi.Text = row.Cells[4].Value.ToString().Trim();
-                    txt_sdt.Text = row.Cells[5].Value.ToString().Trim();
-                    dateTimePicker2.Value = DateTime.Parse(row.Cells[6].Value.ToString().Trim());
-                    txt_mucluong.Text = row.Cells[7].Value.ToString().Trim();
-                    cb_macv.SelectedValue = row.Cells[8].Value.ToString().Trim();
+                    txt_sohd.Text = row.Cells[0].Value.ToString().Trim();
+                    cb_makh.SelectedValue = row.Cells[1].Value.ToString().Trim();
+                    cb_manv.SelectedValue = row.Cells[2].Value.ToString().Trim();
+                    ngaylaphd.Value = DateTime.Parse(row.Cells[3].Value.ToString().Trim());
                 }
                 else
                 {
                     an_txt();
 
                     // Hiện dữ liệu vào các label
-                    lb_manv.Text = row.Cells[0].Value.ToString().Trim();
-                    lb_hoten.Text = row.Cells[1].Value.ToString().Trim();
-                    lb_gioitinh.Text = row.Cells[2].Value.ToString().Trim();
-                    lb_ngaysinh.Text = DateTime.Parse(row.Cells[3].Value.ToString()).ToString("dd/MM/yyyy");
-                    lb_diachi.Text = row.Cells[4].Value.ToString().Trim();
-                    lb_sdt.Text = row.Cells[5].Value.ToString().Trim();
-                    lb_ngayvaolam.Text = DateTime.Parse(row.Cells[6].Value.ToString()).ToString("dd/MM/yyyy");
-                    lb_mucluong.Text = row.Cells[7].Value.ToString().Trim();
-                    lb_chucvu.Text = row.Cells[8].Value.ToString().Trim();
+                    lb_sohd.Text = row.Cells[0].Value.ToString().Trim();
+                    lb_makh.Text = row.Cells[1].Value.ToString().Trim();
+                    lb_manv.Text = row.Cells[2].Value.ToString().Trim();
+                    lb_ngaylaphd.Text = DateTime.Parse(row.Cells[3].Value.ToString()).ToString("dd/MM/yyyy");
+                    
 
                     bt_sua.Visible = true;
                     bt_xoa.Visible = true;
@@ -212,41 +204,36 @@ namespace QLBH
             hien_txt();
             xoa_lb();
             reset_txt();
-            
+
             bt_huy.Visible = true;
             bt_luu.Visible = true;
 
-            txt_manv.Focus();
+            txt_sohd.Focus();
         }
 
         private void bt_luu_Click(object sender, EventArgs e)
         {
-            if (sua==true) // được gọi lên từ nút sửa
+            if (sua == true) // được gọi lên từ nút sửa
             {
-                if (txt_manv.Text == "")
+                if (txt_sohd.Text == "")
                 {
-                    thongbao("Mã nhân viên không được để trống");
-                    txt_manv.Focus();
+                    thongbao("Số hoá đơn không được để trống");
+                    txt_sohd.Focus();
                 }
                 else
                 {
                     // thực hiện chức năng sửa dữ liệu
                     DialogResult result = MessageBox.Show("Bạn có muốn sửa thành" +
-                        "\nMÃ NHÂN VIÊN:  " + txt_manv.Text +
-                        "\nHỌ TÊN:  " + txt_hoten.Text +
-                        "\nGIỚI TÍNH:  " + cb_gioitinh.Text +
-                        "\nNGÀY SINH:  " + ngaysinh.Value.ToString("dd/MM/yyyy") +
-                        "\nĐỊA CHỈ: " + txt_diachi.Text +
-                        "\nSỐ ĐIỆN THOẠI:  " + txt_sdt.Text +
-                        "\nNGÀY VÀO LÀM:  " + dateTimePicker2.Value.ToString("dd/MM/yyyy") +
-                        "\nMỨC LƯƠNG:  " + txt_mucluong.Text +
-                        "\nCHỨC VỤ:  " + cb_macv.SelectedValue.ToString()
+                        "\nSỐ HOÁ ĐƠN  " + txt_sohd.Text +
+                        "\nMÃ KHÁC HÀNG:  " + cb_makh.SelectedValue.ToString() +
+                        "\nMÃ NHÂN VIÊN:  " + cb_manv.SelectedValue.ToString() +
+                        "\nNGÀY LẬP HOÁ ĐƠN:  " + ngaylaphd.Value.ToString("dd/MM/yyyy")
                         , "Chú ý", MessageBoxButtons.YesNo); // thông báo xác nhận YES/NO
 
                     if (result == DialogResult.Yes) // nếu xác nhận là YES
                     {
                         // sửa dữ liệu
-                        kn.suanv(txt_manv.Text, txt_hoten.Text, cb_gioitinh.GetItemText(cb_gioitinh.SelectedItem), ngaysinh.Value.ToString("yyyy/MM/dd"), txt_diachi.Text, txt_sdt.Text, dateTimePicker2.Value.ToString("yyyy/MM/dd"), txt_mucluong.Text, cb_macv.GetItemText(cb_macv.SelectedItem), chon);
+                        kn.suahd(chon,txt_sohd.Text, cb_makh.GetItemText(cb_makh.SelectedItem), cb_manv.GetItemText(cb_manv.SelectedItem), ngaylaphd.Value.ToString("yyyy/MM/dd"));
                         Loaddulieu();
                         an_txt();
                         an_btn();
@@ -262,18 +249,19 @@ namespace QLBH
             }
             else
             {
-                if (txt_manv.Text == "" || txt_hoten.Text == "")
+                if (txt_sohd.Text == "")
                 {
-                    MessageBox.Show("Dữ liệu không được để trống", "Thông báo", MessageBoxButtons.OK);
+                    thongbao("Số hoá đơn không được để trống");
+                    txt_sohd.Focus();
                 }
                 else
                 {
-                    string s = "select * from NHANVIEN where MANV='" + txt_manv.Text + "'";
+                    string s = "select * from hoadon where sohd='" + txt_sohd.Text + "'";
                     DataTable dt = new DataTable();
                     dt = kn.taobang(s);
                     if (dt.Rows.Count == 0)
                     {
-                        kn.themnv(txt_manv.Text, txt_hoten.Text, cb_gioitinh.GetItemText(cb_gioitinh.SelectedItem), ngaysinh.Value.ToString("yyyy/MM/dd"), txt_diachi.Text, txt_sdt.Text, dateTimePicker2.Value.ToString("yyyy/MM/dd"), txt_mucluong.Text , cb_macv.GetItemText(cb_macv.SelectedItem));
+                        kn.themhd(txt_sohd.Text, cb_makh.GetItemText(cb_makh.SelectedItem), cb_manv.GetItemText(cb_manv.SelectedItem), ngaylaphd.Value.ToString("yyyy/MM/dd"));
                         Loaddulieu();
                         an_txt();
                         an_btn();
@@ -282,10 +270,29 @@ namespace QLBH
                     }
                     else
                     {
-                        MessageBox.Show("Mã nhân viên đã tồn tại, vui lòng nhập lại", "Thông báo", MessageBoxButtons.OK);
+                        MessageBox.Show("Số hóa đơn đã tồn tại, vui lòng nhập lại", "Thông báo", MessageBoxButtons.OK);
                     }
                 }
             }
+        }
+        Boolean sua = false;
+        private void bt_sua_Click(object sender, EventArgs e)
+        {
+            sua = true; // gán true cho biến "sua" để tiếp tục làm việc trong nút lưu
+            xoa_lb();
+            hien_txt();
+            an_btn();
+            bt_huy.Visible = true;
+            bt_luu.Visible = true;
+
+            int index = vitri;
+
+            // hiện dữ liệu lên các text box...
+            txt_sohd.Text = dtgv.Rows[index].Cells[0].Value.ToString().Trim();
+            cb_makh.SelectedValue = dtgv.Rows[index].Cells[1].Value.ToString().Trim();
+            cb_manv.SelectedValue = dtgv.Rows[index].Cells[2].Value.ToString().Trim();
+            ngaylaphd.Value = DateTime.Parse(dtgv.Rows[index].Cells[3].Value.ToString().Trim());
+
         }
 
         private void bt_xoa_Click(object sender, EventArgs e)
@@ -298,7 +305,7 @@ namespace QLBH
                 {
                     try
                     {
-                        kn.xoanv(chon);
+                        kn.xoahd(chon);
                         bt_them_Click(sender, e);
                         Loaddulieu();
                         an_btn();
@@ -309,7 +316,7 @@ namespace QLBH
                     }
                     catch
                     {
-                        MessageBox.Show("Mã nhân viên đang được sử dụng ở bảng khác", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Số hóa đơn đang được sử dụng ở bảng khác", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else if (result == DialogResult.No) // xác nhận xoá là YES
@@ -328,32 +335,6 @@ namespace QLBH
             Close();
         }
 
-        Boolean sua = false;
-        private void bt_sua_Click(object sender, EventArgs e)
-        {
-            sua = true; // gán true cho biến "sua" để tiếp tục làm việc trong nút lưu
-            xoa_lb();
-            hien_txt();
-            an_btn();
-            bt_huy.Visible = true;
-            bt_luu.Visible = true;
-
-            int index = vitri;
-
-            // hiện dữ liệu lên các text box...
-            txt_manv.Text = dtgv.Rows[index].Cells[0].Value.ToString().Trim();
-            txt_hoten.Text = dtgv.Rows[index].Cells[1].Value.ToString().Trim();
-            cb_gioitinh.SelectedItem = dtgv.Rows[index].Cells[2].Value.ToString().Trim();
-            thongbao(dtgv.Rows[index].Cells[2].Value.ToString().Trim());
-            ngaysinh.Value = DateTime.Parse(dtgv.Rows[index].Cells[3].Value.ToString().Trim());
-            txt_diachi.Text = dtgv.Rows[index].Cells[4].Value.ToString().Trim();
-            txt_sdt.Text = dtgv.Rows[index].Cells[5].Value.ToString().Trim();
-            dateTimePicker2.Value = DateTime.Parse(dtgv.Rows[index].Cells[6].Value.ToString().Trim());
-            txt_mucluong.Text = dtgv.Rows[index].Cells[7].Value.ToString().Trim();
-            cb_macv.SelectedValue = dtgv.Rows[index].Cells[8].Value.ToString().Trim();
-
-            
-        }
         private void bt_huy_Click(object sender, EventArgs e)
         {
             an_txt();

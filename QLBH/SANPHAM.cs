@@ -17,6 +17,7 @@ namespace QLBH
             InitializeComponent();
         }
         Connecting kn = new Connecting();
+        #region function
         public void Loaddulieu()
         {
             string sql = "Select * from SANPHAM";
@@ -24,7 +25,6 @@ namespace QLBH
         }
         public void Loadnuocsx()
         {
-          
            cb_nuocsx.Items.Add("Ả Rập Xê Út");
            cb_nuocsx.Items.Add("Afghanistan");
            cb_nuocsx.Items.Add("Ai Cập");
@@ -251,32 +251,136 @@ namespace QLBH
            cb_nuocsx.Items.Add("Zambia");
            cb_nuocsx.Items.Add("Zimbabwe");
         }
+
+        void xoa_lb()
+        {
+            lb_dongia.ResetText();
+            lb_dvt.ResetText();
+            lb_masp.ResetText();
+            lb_nuocsx.ResetText();
+            lb_tensp.ResetText();
+        }
+
+        // ẩn các button
+        void an_btn()
+        {
+            bt_luu.Visible = false;
+            bt_huy.Visible = false;
+            bt_xoa.Visible = false;
+            bt_sua.Visible = false;
+            bt_them.Visible = false;
+
+        }
+
+        // ẩn các textbox
+        void an_txt()
+        {
+            foreach (TextBox textBox in Controls.OfType<TextBox>())
+                textBox.Visible = false;
+            foreach (ComboBox ComboBox in Controls.OfType<ComboBox>())
+                ComboBox.Visible = false;
+        }
+
+        // hiện các textbox lên
+        void hien_txt()
+        {
+            foreach (TextBox textBox in Controls.OfType<TextBox>())
+                textBox.Visible = true;
+            foreach (ComboBox ComboBox in Controls.OfType<ComboBox>())
+                ComboBox.Visible = true;
+        }
+
+        // xoá text trong các textbox
+        void reset_txt()
+        {
+            foreach (TextBox textBox in Controls.OfType<TextBox>())
+                textBox.Text = "";
+            foreach (ComboBox ComboBox in Controls.OfType<ComboBox>())
+                ComboBox.SelectedIndex = -1;
+        }
+
+        // hiện thông báo với text được truyền vào
+        private void thongbao(string a)
+        {
+            lb_thongbao.Text = a;
+            Timer t1 = new Timer();
+            t1.Interval = 3000; // tạm dừng 3000 = 3 second
+            t1.Tick += (s, e) =>
+            {
+                lb_thongbao.ResetText();
+                t1.Stop();
+            };
+            t1.Start();
+        }
+        #endregion
         private void SANPHAM_Load(object sender, EventArgs e)
         {
             kn.connect();
             Loaddulieu();
             Loadnuocsx();
+
+            lb_thongbao.Text = "";      // cho thông báo bằng rỗng.
+            an_btn();                   // ẩn các button.
+            bt_them.Visible = true;
         }
 
         private void bt_luu_Click(object sender, EventArgs e)
         {
-            if (txt_dongia.Text == "" || txt_masp.Text == "" || txt_tensp.Text == "" || cb_dvt.Text == "" || cb_nuocsx.Text == "")
+            if (sua == true) // được gọi lên từ nút sửa
             {
-                MessageBox.Show("Dữ liệu nhập vào không được để trống", "Thông báo", MessageBoxButtons.OK);
-            }
-            else
-            {
-                string s = "select * from SANPHAM where MASP='" + txt_masp.Text + "'";
-                DataTable dt = new DataTable();
-                dt = kn.taobang(s);
-                if (dt.Rows.Count == 0)
-                {
-                    kn.themsp(txt_masp.Text, txt_tensp.Text,cb_dvt.GetItemText(cb_dvt.SelectedItem), cb_nuocsx.GetItemText(cb_nuocsx.SelectedItem),txt_dongia.Text);
-                    Loaddulieu();
+                if(txt_dongia.Text == "" || txt_masp.Text == "" || txt_tensp.Text == "" || cb_dvt.Text == "" || cb_nuocsx.Text == "")
+                    {
+                    thongbao("Dữ liệu không được để trống");
                 }
                 else
                 {
-                    MessageBox.Show("Mã CHỨC VỤ đã tồn tại, vui lòng nhập lại", "Thông báo", MessageBoxButtons.OK);
+                    DialogResult result = MessageBox.Show("Bạn có muốn sửa thành \nMã sản phẩm: " + txt_masp.Text +
+                    "\nTên sản phẩm: " + txt_tensp.Text +
+                    "\nĐơn vị tính: " + cb_dvt.Text +
+                    "\nNước sản xuất: " + cb_nuocsx.Text +
+                    "\nĐơn giá: " + txt_dongia.Text, "Chú ý", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        kn.suasp(chon, txt_masp.Text, txt_tensp.Text, cb_dvt.GetItemText(cb_dvt.SelectedItem), cb_nuocsx.GetItemText(cb_nuocsx.SelectedItem), txt_dongia.Text);
+                        Loaddulieu();
+                        new NHANVIEN().load();
+                        an_txt();
+                        an_btn();
+                        bt_them.Visible = true;
+                        thongbao("Đã lưu");
+                        sua = false;
+                    }
+                    else if (result == DialogResult.No)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                if (txt_dongia.Text == "" || txt_masp.Text == "" || txt_tensp.Text == "" || cb_dvt.Text == "" || cb_nuocsx.Text == "")
+                {
+                    MessageBox.Show("Dữ liệu nhập vào không được để trống", "Thông báo", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    string s = "select * from SANPHAM where MASP='" + txt_masp.Text + "'";
+                    DataTable dt = new DataTable();
+                    dt = kn.taobang(s);
+                    if (dt.Rows.Count == 0)
+                    {
+                        kn.themsp(txt_masp.Text, txt_tensp.Text, cb_dvt.GetItemText(cb_dvt.SelectedItem), cb_nuocsx.GetItemText(cb_nuocsx.SelectedItem), txt_dongia.Text);
+                        Loaddulieu();
+                        an_txt();
+                        an_btn();
+                        bt_them.Visible = true;
+                        thongbao("Đã lưu");
+                        sua = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mã CHỨC VỤ đã tồn tại, vui lòng nhập lại", "Thông báo", MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -290,8 +394,13 @@ namespace QLBH
                 {
                     try
                     {
-                        MessageBox.Show(chon);
                         kn.xoasp(chon);
+                        Loaddulieu();
+                        an_btn();
+                        an_txt();
+                        xoa_lb();
+                        bt_them.Visible = true;
+                        thongbao("Đã xoá");
                     }
                     catch
                     {
@@ -310,36 +419,72 @@ namespace QLBH
             }
         }
 
-        string chon;
+        int vitri = -1;         // lấy ra vị trí dòng được chọn trong DataGridView.
+        string chon = null;     // lấy ra mã nhân viên của dòng được chọn.
         private void dtgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 DataGridViewRow row = new DataGridViewRow();
+                vitri = e.RowIndex; // gán vị trí dòng đang chọn vào biến "vitri".
                 row = dtgv.Rows[e.RowIndex];
-                chon = row.Cells[0].Value.ToString().Trim();
-                txt_masp.Text = row.Cells[0].Value.ToString().Trim();
-                txt_tensp.Text = row.Cells[1].Value.ToString().Trim();
+                chon = row.Cells[0].Value.ToString().Trim(); // gán mã nhân viên vào biến "chon".
+                if (chon == "")
+                {
+                    chon = null;
 
-                cb_dvt.SelectedIndex = cb_dvt.FindString(row.Cells[2].Value.ToString().Trim());
-                
-                cb_nuocsx.SelectedIndex = cb_nuocsx.FindString(row.Cells[3].Value.ToString().Trim());
+                    xoa_lb();
 
-                txt_dongia.Text = row.Cells[4].Value.ToString().Trim();
+                    bt_sua.Visible = false;
+                    bt_xoa.Visible = false;
+                }
+                else if (bt_luu.Visible == true)
+                {
+                    xoa_lb();
+
+                    // hiện dữ liệu vào các textbox
+                    txt_masp.Text = row.Cells[0].Value.ToString().Trim();
+                    txt_tensp.Text = row.Cells[1].Value.ToString().Trim();
+                    cb_dvt.SelectedIndex = cb_dvt.FindString(row.Cells[2].Value.ToString().Trim());
+                    cb_nuocsx.SelectedIndex = cb_nuocsx.FindString(row.Cells[3].Value.ToString().Trim());
+                    txt_dongia.Text = row.Cells[4].Value.ToString().Trim();
+                }
+                else
+                {
+                    an_txt();
+
+                    // Hiện dữ liệu vào các label
+                    lb_masp.Text = row.Cells[0].Value.ToString().Trim();
+                    lb_tensp.Text = row.Cells[1].Value.ToString().Trim();
+                    lb_dvt.Text = row.Cells[2].Value.ToString().Trim();
+                    lb_nuocsx.Text = row.Cells[3].Value.ToString().Trim();
+                    lb_dongia.Text = row.Cells[4].Value.ToString().Trim();
+
+                    bt_sua.Visible = true;
+                    bt_xoa.Visible = true;
+                }
             }
             catch
             {
                 chon = null;
+
+                xoa_lb();
+
+                bt_sua.Visible = false;
+                bt_xoa.Visible = false;
             }
         }
 
         private void bt_them_Click(object sender, EventArgs e)
         {
-            txt_dongia.ResetText();
-            txt_masp.ResetText();
-            txt_tensp.ResetText();
-            cb_dvt.SelectedIndex = -1;
-            cb_nuocsx.SelectedIndex = -1;
+            an_btn();
+            hien_txt();
+            xoa_lb();
+            reset_txt();
+
+            bt_huy.Visible = true;
+            bt_luu.Visible = true;
+
             txt_masp.Focus();
         }
 
@@ -348,31 +493,24 @@ namespace QLBH
             this.Close();
         }
 
+        Boolean sua = false;
         private void bt_sua_Click(object sender, EventArgs e)
         {
-            if (chon != null)
-            {
-                DialogResult result = MessageBox.Show("Bạn có muốn sửa thành \nMã sản phẩm: " + txt_masp.Text +
-                    "\nTên sản phẩm: " + txt_tensp.Text+
-                    "\nĐơn vị tính: " + cb_dvt.Text +
-                    "\nNước sản xuất: " + cb_nuocsx.Text +
-                    "\nĐơn giá: " + txt_dongia.Text, "Chú ý", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    kn.suasp(chon, txt_masp.Text, txt_tensp.Text, cb_dvt.GetItemText(cb_dvt.SelectedItem), cb_nuocsx.GetItemText(cb_nuocsx.SelectedItem), txt_dongia.Text);
-                    Loaddulieu();
-                    new NHANVIEN().load();
-                }
-                else if (result == DialogResult.No)
-                {
+            sua = true; // gán true cho biến "sua" để tiếp tục làm việc trong nút lưu
+            xoa_lb();
+            hien_txt();
+            an_btn();
+            bt_huy.Visible = true;
+            bt_luu.Visible = true;
 
-                }
+            int index = vitri;
 
-            }
-            else
-            {
-                MessageBox.Show("Hãy chọn dòng cần sửa", "Thông báo", MessageBoxButtons.OK);
-            }
+            // hiện dữ liệu lên các text box...
+            txt_masp.Text = dtgv.Rows[index].Cells[0].Value.ToString().Trim();
+            txt_tensp.Text = dtgv.Rows[index].Cells[1].Value.ToString().Trim();
+            cb_dvt.SelectedIndex = cb_dvt.FindString(dtgv.Rows[index].Cells[2].Value.ToString().Trim());
+            cb_nuocsx.SelectedIndex = cb_nuocsx.FindString(dtgv.Rows[index].Cells[3].Value.ToString().Trim());
+            txt_dongia.Text = dtgv.Rows[index].Cells[4].Value.ToString().Trim();
         }
     }
 }

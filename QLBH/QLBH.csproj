@@ -53,6 +53,18 @@
       <DependentUpon>CHUCVU.cs</DependentUpon>
     </Compile>
     <Compile Include="Connecting.cs" />
+    <Compile Include="HOADON.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HOADON.Designer.cs">
+      <DependentUpon>HOADON.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HOADONCHITIET.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HOADONCHITIET.Designer.cs">
+      <DependentUpon>HOADONCHITIET.cs</DependentUpon>
+    </Compile>
     <Compile Include="KHACHHANG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +129,12 @@
     </Compile>
     <EmbeddedResource Include="CHUCVU.resx">
       <DependentUpon>CHUCVU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HOADON.resx">
+      <DependentUpon>HOADON.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HOADONCHITIET.resx">
+      <DependentUpon>HOADONCHITIET.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KHACHHANG.resx">
       <DependentUpon>KHACHHANG.cs</DependentUpon>

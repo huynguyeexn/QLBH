@@ -47,6 +47,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cb_nuocsx = new System.Windows.Forms.ComboBox();
+            this.lb_thongbao = new System.Windows.Forms.Label();
+            this.lb_masp = new System.Windows.Forms.Label();
+            this.lb_tensp = new System.Windows.Forms.Label();
+            this.lb_dvt = new System.Windows.Forms.Label();
+            this.lb_nuocsx = new System.Windows.Forms.Label();
+            this.lb_dongia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,10 +67,11 @@
             this.cb_dvt.Name = "cb_dvt";
             this.cb_dvt.Size = new System.Drawing.Size(177, 24);
             this.cb_dvt.TabIndex = 68;
+            this.cb_dvt.Visible = false;
             // 
             // bt_luu
             // 
-            this.bt_luu.Location = new System.Drawing.Point(111, 415);
+            this.bt_luu.Location = new System.Drawing.Point(322, 415);
             this.bt_luu.Name = "bt_luu";
             this.bt_luu.Size = new System.Drawing.Size(75, 33);
             this.bt_luu.TabIndex = 75;
@@ -74,7 +81,7 @@
             // 
             // bt_thoat
             // 
-            this.bt_thoat.Location = new System.Drawing.Point(597, 415);
+            this.bt_thoat.Location = new System.Drawing.Point(403, 468);
             this.bt_thoat.Name = "bt_thoat";
             this.bt_thoat.Size = new System.Drawing.Size(75, 33);
             this.bt_thoat.TabIndex = 81;
@@ -85,7 +92,7 @@
             // 
             // bt_inds
             // 
-            this.bt_inds.Location = new System.Drawing.Point(516, 415);
+            this.bt_inds.Location = new System.Drawing.Point(322, 468);
             this.bt_inds.Name = "bt_inds";
             this.bt_inds.Size = new System.Drawing.Size(75, 33);
             this.bt_inds.TabIndex = 80;
@@ -95,17 +102,19 @@
             // 
             // bt_huy
             // 
-            this.bt_huy.Location = new System.Drawing.Point(435, 415);
+            this.bt_huy.BackColor = System.Drawing.Color.LightCoral;
+            this.bt_huy.ForeColor = System.Drawing.Color.Black;
+            this.bt_huy.Location = new System.Drawing.Point(403, 415);
             this.bt_huy.Name = "bt_huy";
             this.bt_huy.Size = new System.Drawing.Size(75, 33);
             this.bt_huy.TabIndex = 79;
             this.bt_huy.TabStop = false;
             this.bt_huy.Text = "Hủy";
-            this.bt_huy.UseVisualStyleBackColor = true;
+            this.bt_huy.UseVisualStyleBackColor = false;
             // 
             // bt_sua
             // 
-            this.bt_sua.Location = new System.Drawing.Point(354, 415);
+            this.bt_sua.Location = new System.Drawing.Point(282, 415);
             this.bt_sua.Name = "bt_sua";
             this.bt_sua.Size = new System.Drawing.Size(75, 33);
             this.bt_sua.TabIndex = 78;
@@ -116,18 +125,19 @@
             // 
             // bt_xoa
             // 
-            this.bt_xoa.Location = new System.Drawing.Point(273, 415);
+            this.bt_xoa.BackColor = System.Drawing.Color.LightCoral;
+            this.bt_xoa.Location = new System.Drawing.Point(444, 415);
             this.bt_xoa.Name = "bt_xoa";
             this.bt_xoa.Size = new System.Drawing.Size(75, 33);
             this.bt_xoa.TabIndex = 77;
             this.bt_xoa.TabStop = false;
             this.bt_xoa.Text = "Xóa";
-            this.bt_xoa.UseVisualStyleBackColor = true;
+            this.bt_xoa.UseVisualStyleBackColor = false;
             this.bt_xoa.Click += new System.EventHandler(this.bt_xoa_Click);
             // 
             // bt_them
             // 
-            this.bt_them.Location = new System.Drawing.Point(192, 415);
+            this.bt_them.Location = new System.Drawing.Point(363, 415);
             this.bt_them.Name = "bt_them";
             this.bt_them.Size = new System.Drawing.Size(75, 33);
             this.bt_them.TabIndex = 76;
@@ -152,6 +162,7 @@
             this.txt_dongia.Name = "txt_dongia";
             this.txt_dongia.Size = new System.Drawing.Size(177, 22);
             this.txt_dongia.TabIndex = 70;
+            this.txt_dongia.Visible = false;
             // 
             // label5
             // 
@@ -187,6 +198,7 @@
             this.txt_tensp.Name = "txt_tensp";
             this.txt_tensp.Size = new System.Drawing.Size(177, 22);
             this.txt_tensp.TabIndex = 67;
+            this.txt_tensp.Visible = false;
             // 
             // label3
             // 
@@ -203,6 +215,7 @@
             this.txt_masp.Name = "txt_masp";
             this.txt_masp.Size = new System.Drawing.Size(177, 22);
             this.txt_masp.TabIndex = 83;
+            this.txt_masp.Visible = false;
             // 
             // label6
             // 
@@ -230,12 +243,75 @@
             this.cb_nuocsx.Name = "cb_nuocsx";
             this.cb_nuocsx.Size = new System.Drawing.Size(177, 24);
             this.cb_nuocsx.TabIndex = 95;
+            this.cb_nuocsx.Visible = false;
+            // 
+            // lb_thongbao
+            // 
+            this.lb_thongbao.AutoSize = true;
+            this.lb_thongbao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lb_thongbao.ForeColor = System.Drawing.Color.Red;
+            this.lb_thongbao.Location = new System.Drawing.Point(405, 146);
+            this.lb_thongbao.Name = "lb_thongbao";
+            this.lb_thongbao.Size = new System.Drawing.Size(110, 20);
+            this.lb_thongbao.TabIndex = 96;
+            this.lb_thongbao.Text = "lb_thongbao";
+            // 
+            // lb_masp
+            // 
+            this.lb_masp.AutoSize = true;
+            this.lb_masp.Location = new System.Drawing.Point(199, 86);
+            this.lb_masp.Name = "lb_masp";
+            this.lb_masp.Size = new System.Drawing.Size(12, 17);
+            this.lb_masp.TabIndex = 97;
+            this.lb_masp.Text = " ";
+            // 
+            // lb_tensp
+            // 
+            this.lb_tensp.AutoSize = true;
+            this.lb_tensp.Location = new System.Drawing.Point(199, 114);
+            this.lb_tensp.Name = "lb_tensp";
+            this.lb_tensp.Size = new System.Drawing.Size(12, 17);
+            this.lb_tensp.TabIndex = 97;
+            this.lb_tensp.Text = " ";
+            // 
+            // lb_dvt
+            // 
+            this.lb_dvt.AutoSize = true;
+            this.lb_dvt.Location = new System.Drawing.Point(199, 142);
+            this.lb_dvt.Name = "lb_dvt";
+            this.lb_dvt.Size = new System.Drawing.Size(12, 17);
+            this.lb_dvt.TabIndex = 97;
+            this.lb_dvt.Text = " ";
+            // 
+            // lb_nuocsx
+            // 
+            this.lb_nuocsx.AutoSize = true;
+            this.lb_nuocsx.Location = new System.Drawing.Point(513, 85);
+            this.lb_nuocsx.Name = "lb_nuocsx";
+            this.lb_nuocsx.Size = new System.Drawing.Size(12, 17);
+            this.lb_nuocsx.TabIndex = 97;
+            this.lb_nuocsx.Text = " ";
+            // 
+            // lb_dongia
+            // 
+            this.lb_dongia.AutoSize = true;
+            this.lb_dongia.Location = new System.Drawing.Point(513, 117);
+            this.lb_dongia.Name = "lb_dongia";
+            this.lb_dongia.Size = new System.Drawing.Size(12, 17);
+            this.lb_dongia.TabIndex = 97;
+            this.lb_dongia.Text = " ";
             // 
             // SANPHAM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 488);
+            this.ClientSize = new System.Drawing.Size(800, 513);
+            this.Controls.Add(this.lb_dongia);
+            this.Controls.Add(this.lb_nuocsx);
+            this.Controls.Add(this.lb_dvt);
+            this.Controls.Add(this.lb_tensp);
+            this.Controls.Add(this.lb_masp);
+            this.Controls.Add(this.lb_thongbao);
             this.Controls.Add(this.cb_nuocsx);
             this.Controls.Add(this.cb_dvt);
             this.Controls.Add(this.bt_luu);
@@ -285,5 +361,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cb_nuocsx;
+        private System.Windows.Forms.Label lb_thongbao;
+        private System.Windows.Forms.Label lb_masp;
+        private System.Windows.Forms.Label lb_tensp;
+        private System.Windows.Forms.Label lb_dvt;
+        private System.Windows.Forms.Label lb_nuocsx;
+        private System.Windows.Forms.Label lb_dongia;
     }
 }

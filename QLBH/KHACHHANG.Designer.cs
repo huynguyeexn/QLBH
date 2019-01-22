@@ -45,12 +45,17 @@
             this.txt_diachi = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_sdt = new System.Windows.Forms.TextBox();
+            this.lb_makh = new System.Windows.Forms.Label();
+            this.lb_tenkh = new System.Windows.Forms.Label();
+            this.lb_diachi = new System.Windows.Forms.Label();
+            this.lb_sdt = new System.Windows.Forms.Label();
+            this.lb_thongbao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_luu
             // 
-            this.bt_luu.Location = new System.Drawing.Point(52, 367);
+            this.bt_luu.Location = new System.Drawing.Point(260, 367);
             this.bt_luu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_luu.Name = "bt_luu";
             this.bt_luu.Size = new System.Drawing.Size(75, 33);
@@ -61,7 +66,7 @@
             // 
             // bt_thoat
             // 
-            this.bt_thoat.Location = new System.Drawing.Point(539, 367);
+            this.bt_thoat.Location = new System.Drawing.Point(341, 423);
             this.bt_thoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_thoat.Name = "bt_thoat";
             this.bt_thoat.Size = new System.Drawing.Size(75, 33);
@@ -73,7 +78,7 @@
             // 
             // bt_inds
             // 
-            this.bt_inds.Location = new System.Drawing.Point(458, 367);
+            this.bt_inds.Location = new System.Drawing.Point(260, 423);
             this.bt_inds.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_inds.Name = "bt_inds";
             this.bt_inds.Size = new System.Drawing.Size(75, 33);
@@ -84,18 +89,20 @@
             // 
             // bt_huy
             // 
-            this.bt_huy.Location = new System.Drawing.Point(378, 367);
+            this.bt_huy.BackColor = System.Drawing.Color.LightCoral;
+            this.bt_huy.Location = new System.Drawing.Point(341, 367);
             this.bt_huy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_huy.Name = "bt_huy";
             this.bt_huy.Size = new System.Drawing.Size(75, 33);
             this.bt_huy.TabIndex = 60;
             this.bt_huy.TabStop = false;
             this.bt_huy.Text = "Hủy";
-            this.bt_huy.UseVisualStyleBackColor = true;
+            this.bt_huy.UseVisualStyleBackColor = false;
+            this.bt_huy.Click += new System.EventHandler(this.bt_huy_Click);
             // 
             // bt_sua
             // 
-            this.bt_sua.Location = new System.Drawing.Point(296, 367);
+            this.bt_sua.Location = new System.Drawing.Point(220, 367);
             this.bt_sua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_sua.Name = "bt_sua";
             this.bt_sua.Size = new System.Drawing.Size(75, 33);
@@ -107,19 +114,20 @@
             // 
             // bt_xoa
             // 
-            this.bt_xoa.Location = new System.Drawing.Point(215, 367);
+            this.bt_xoa.BackColor = System.Drawing.Color.LightCoral;
+            this.bt_xoa.Location = new System.Drawing.Point(382, 367);
             this.bt_xoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_xoa.Name = "bt_xoa";
             this.bt_xoa.Size = new System.Drawing.Size(75, 33);
             this.bt_xoa.TabIndex = 58;
             this.bt_xoa.TabStop = false;
             this.bt_xoa.Text = "Xóa";
-            this.bt_xoa.UseVisualStyleBackColor = true;
+            this.bt_xoa.UseVisualStyleBackColor = false;
             this.bt_xoa.Click += new System.EventHandler(this.bt_xoa_Click);
             // 
             // bt_them
             // 
-            this.bt_them.Location = new System.Drawing.Point(134, 367);
+            this.bt_them.Location = new System.Drawing.Point(301, 367);
             this.bt_them.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_them.Name = "bt_them";
             this.bt_them.Size = new System.Drawing.Size(75, 33);
@@ -147,15 +155,16 @@
             this.txt_tenkh.Name = "txt_tenkh";
             this.txt_tenkh.Size = new System.Drawing.Size(177, 22);
             this.txt_tenkh.TabIndex = 57;
+            this.txt_tenkh.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(36, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 17);
+            this.label3.Size = new System.Drawing.Size(115, 17);
             this.label3.TabIndex = 55;
-            this.label3.Text = "Tên khách hàng";
+            this.label3.Text = "Tên khách hàng:";
             // 
             // txt_makh
             // 
@@ -164,6 +173,7 @@
             this.txt_makh.Name = "txt_makh";
             this.txt_makh.Size = new System.Drawing.Size(177, 22);
             this.txt_makh.TabIndex = 54;
+            this.txt_makh.Visible = false;
             // 
             // label6
             // 
@@ -179,18 +189,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(36, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 17);
+            this.label2.Size = new System.Drawing.Size(109, 17);
             this.label2.TabIndex = 56;
-            this.label2.Text = "Mã khách hàng";
+            this.label2.Text = "Mã khách hàng:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(36, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 56;
-            this.label1.Text = "Địa chỉ";
+            this.label1.Text = "Địa chỉ:";
             // 
             // txt_diachi
             // 
@@ -199,15 +209,16 @@
             this.txt_diachi.Name = "txt_diachi";
             this.txt_diachi.Size = new System.Drawing.Size(177, 22);
             this.txt_diachi.TabIndex = 54;
+            this.txt_diachi.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(36, 127);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 17);
+            this.label4.Size = new System.Drawing.Size(95, 17);
             this.label4.TabIndex = 55;
-            this.label4.Text = "Số điện thoại";
+            this.label4.Text = "Số điện thoại:";
             // 
             // txt_sdt
             // 
@@ -216,12 +227,65 @@
             this.txt_sdt.Name = "txt_sdt";
             this.txt_sdt.Size = new System.Drawing.Size(177, 22);
             this.txt_sdt.TabIndex = 57;
+            this.txt_sdt.Visible = false;
+            // 
+            // lb_makh
+            // 
+            this.lb_makh.AutoSize = true;
+            this.lb_makh.Location = new System.Drawing.Point(149, 42);
+            this.lb_makh.Name = "lb_makh";
+            this.lb_makh.Size = new System.Drawing.Size(12, 17);
+            this.lb_makh.TabIndex = 66;
+            this.lb_makh.Text = " ";
+            // 
+            // lb_tenkh
+            // 
+            this.lb_tenkh.AutoSize = true;
+            this.lb_tenkh.Location = new System.Drawing.Point(149, 70);
+            this.lb_tenkh.Name = "lb_tenkh";
+            this.lb_tenkh.Size = new System.Drawing.Size(12, 17);
+            this.lb_tenkh.TabIndex = 66;
+            this.lb_tenkh.Text = " ";
+            // 
+            // lb_diachi
+            // 
+            this.lb_diachi.AutoSize = true;
+            this.lb_diachi.Location = new System.Drawing.Point(149, 99);
+            this.lb_diachi.Name = "lb_diachi";
+            this.lb_diachi.Size = new System.Drawing.Size(12, 17);
+            this.lb_diachi.TabIndex = 66;
+            this.lb_diachi.Text = " ";
+            // 
+            // lb_sdt
+            // 
+            this.lb_sdt.AutoSize = true;
+            this.lb_sdt.Location = new System.Drawing.Point(149, 127);
+            this.lb_sdt.Name = "lb_sdt";
+            this.lb_sdt.Size = new System.Drawing.Size(12, 17);
+            this.lb_sdt.TabIndex = 66;
+            this.lb_sdt.Text = " ";
+            // 
+            // lb_thongbao
+            // 
+            this.lb_thongbao.AutoSize = true;
+            this.lb_thongbao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lb_thongbao.ForeColor = System.Drawing.Color.Red;
+            this.lb_thongbao.Location = new System.Drawing.Point(347, 39);
+            this.lb_thongbao.Name = "lb_thongbao";
+            this.lb_thongbao.Size = new System.Drawing.Size(110, 20);
+            this.lb_thongbao.TabIndex = 68;
+            this.lb_thongbao.Text = "lb_thongbao";
             // 
             // KHACHHANG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 450);
+            this.ClientSize = new System.Drawing.Size(677, 470);
+            this.Controls.Add(this.lb_thongbao);
+            this.Controls.Add(this.lb_sdt);
+            this.Controls.Add(this.lb_diachi);
+            this.Controls.Add(this.lb_tenkh);
+            this.Controls.Add(this.lb_makh);
             this.Controls.Add(this.bt_luu);
             this.Controls.Add(this.bt_thoat);
             this.Controls.Add(this.bt_inds);
@@ -267,5 +331,10 @@
         private System.Windows.Forms.TextBox txt_diachi;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_sdt;
+        private System.Windows.Forms.Label lb_makh;
+        private System.Windows.Forms.Label lb_tenkh;
+        private System.Windows.Forms.Label lb_diachi;
+        private System.Windows.Forms.Label lb_sdt;
+        private System.Windows.Forms.Label lb_thongbao;
     }
 }

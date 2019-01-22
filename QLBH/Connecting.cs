@@ -152,5 +152,50 @@ namespace QLBH
 
         #endregion
 
+        #region HOÁ ĐƠN
+
+        public void themhd(string sohd, string makh, string manv, string ngaylaphoadon)
+        {
+            string sql = "Insert into hoadon(sohd,makh,manv,ngaylaphd)" + "values('" + sohd + "',N'" + makh + "',N'" + manv + "',N'" + ngaylaphoadon+"')";
+            SqlCommand scm = new SqlCommand(sql, ketnoi);
+            scm.ExecuteNonQuery();
+        }
+        public void suahd(string chon, string sohd, string makh, string manv, string ngaylaphoadon)
+        {
+            string sql = "UPDATE hoadon SET sohd='" + sohd + "',makh=N'" + makh + "' ,manv=N'" + manv + "',ngaylaphd=N'" + ngaylaphoadon + "' WHERE sohd=N'" + chon + "'";
+            SqlCommand scm = new SqlCommand(sql, ketnoi);
+            scm.ExecuteNonQuery();
+        }
+        public void xoahd(string sohd)
+        {
+            string sql = "DELETE FROM hoadon WHERE sohd=N'" + sohd + "'";
+            SqlCommand scm = new SqlCommand(sql, ketnoi);
+            scm.ExecuteNonQuery();
+        }
+
+        #endregion
+
+        #region HOÁ ĐƠN CHI TIẾT
+
+        public void themhdct(string sohd, string masp, string soluong)
+        {
+            string sql = "Insert into hoadonct(sohd,masp,soluong)" + "values('" + sohd + "',N'" + masp + "',N'" + soluong + "')";
+            SqlCommand scm = new SqlCommand(sql, ketnoi);
+            scm.ExecuteNonQuery();
+        }
+        public void suahdct(string chon, string sohd, string masp, string soluong)
+        {
+            string sql = "UPDATE hoadonct SET sohd='" + sohd + "',masp=N'" + masp + "' ,soluong=N'" + soluong + "' WHERE sohd=N'" + chon + "'";
+            SqlCommand scm = new SqlCommand(sql, ketnoi);
+            scm.ExecuteNonQuery();
+        }
+        public void xoahdct(string sohd)
+        {
+            string sql = "DELETE FROM hoadonct WHERE sohd=N'" + sohd + "'";
+            SqlCommand scm = new SqlCommand(sql, ketnoi);
+            scm.ExecuteNonQuery();
+        }
+
+        #endregion
     }
 }
