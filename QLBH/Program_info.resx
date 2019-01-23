@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>PHẦN MỀM QUẢN LÝ BÁN HÀNG là công cụ ứng dụng CNTT vào công tác quản lý .Phần mềm được xây dựng với những công nghệ mới nhất của Microsoft dựa trên tiêu chí đơn giản, thân thiện nên người dùng không cần biết nhiều về máy vi tính và kế toán vẫn nhanh chóng sử dụng thành thạo phần mềm. Sản phẩm phần mềm có thể áp dụng cho các loại hình kinh doanh như quản lý nhỏ lẻ.</value>
+  </data>
 </root>

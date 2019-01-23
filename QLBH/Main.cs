@@ -134,10 +134,10 @@ namespace QLBH
 
         private void giớiThiệuVềỨngDụngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (Application.OpenForms[""] == null)
-            //{
-            //    new ().Show();
-            //}
+            if (Application.OpenForms["Program_info"] == null)
+            {
+                new Program_info().Show();
+            }
         }
 
         private void chứcVụToolStripMenuItem_Click(object sender, EventArgs e)
